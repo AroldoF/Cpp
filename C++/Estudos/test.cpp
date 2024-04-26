@@ -11,4 +11,5 @@ int main()
         a = z * a;
     }
     cout << a << endl;
+    return 0;
 }
