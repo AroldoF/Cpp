@@ -7,6 +7,7 @@ int main()
     cin>>n;
     int vet[n];
     int aux[n];
+    bool encontrado=false;
     for (i = 0; i <n; i++)
     {
         cout<<"Digite o "<<i+1<<" numero"<<endl;
@@ -14,12 +15,22 @@ int main()
     }
     for (i = 0; i <n; i++)
     {
-        if (vet[i-1]+vet[i-2]==vet[i]&&i>=2)
+        if (aux[a]+aux[a+1]==vet[i])
         {
-            aux[z]=vet[i-2];
-            aux[z+1]=vet[i-1];
-            aux[z+2]=vet[i];
-            z+=3;
+            aux[z]=vet[i];
+            z++;
+            a++;
+            encontrado=true;
+        }
+        if (encontrado==false)
+        {
+            z=0;
+        }
+        if (encontrado==false&&i>=1)
+        {
+            aux[z]=vet[i-1];
+            aux[z+1]=vet[i];
+            z+=2;
         }
     }
     for (i = 0; i <z; i++)
