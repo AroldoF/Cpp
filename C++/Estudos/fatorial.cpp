@@ -10,12 +10,6 @@ int main()
         z = n - i;
         a = z * a;
     }
-    if (a % 2 == 0)
-    {
-        cout << a << " - par" << endl;
-    }
-    else
-        cout << a << " - impar" << endl;
-
+    cout << a << endl;
     return 0;
 }
