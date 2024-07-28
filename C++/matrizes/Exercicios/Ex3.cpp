@@ -34,7 +34,7 @@ int main()
         cout << "Aluno " << nomes[i] << " teve media " << medias[i] << endl;
         total += medias[i];
     }
-    
+
     cout << "a media total dos alunos foi " << total / 4 << endl;
     return 0;
 }

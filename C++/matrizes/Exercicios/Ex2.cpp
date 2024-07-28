@@ -1,36 +1,48 @@
 #include <iostream>
 #include <string>
-#include <iomanip>
 using namespace std;
 int main()
 {
-    string matriz[2][5];
+    string matriz[10][5];
     int i,j;
     for (i = 0; i < 2; i++)
     {
+        cout<<"pesssoa "<<i+1<<":"<<endl;
         for (j = 0; j < 5; j++)
         {   
+            switch (j)
+            {
+            case 0:
+                cout<<"Digite seu nome:"<<endl;
+                break;
+            case 1:
+                cout<<"Digite seu endereço:"<<endl;
+                break;
+            case 2:
+                cout<<"Digite seu Codigo postal:"<<endl;
+                break;
+            case 3:
+                cout<<"Digite seu bairro:"<<endl;
+                break;
+            default:
+                cout<<"Digite seu telefone:"<<endl;
+                break;
+            }
             string line;
             getline(cin,line);
             matriz[i][j]=line;
-            //cin>>matriz[i][j];
         }
-        
     }
-    int largura=20;
-    cout<<left;
-    cout<<"|";
+
     for (i = 0; i < 2; i++)
     {
+        cout<<"pesssoa "<<i+1<<":"<<endl;
         for (j = 0; j < 5; j++)
         {   
-            cout<< setw(largura)<<matriz[i][j]<<" |";
+            cout<<matriz[i][j]<<endl;
         }
         cout<<endl;
-        if (i!=1)
-        {
-            cout<<"|";
-        }
     }
+
     return 0;
 }
