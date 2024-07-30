@@ -23,7 +23,7 @@ int main()
     {
         for (j = 0; j < 7; j++)
         {
-            if ((i == j && i == 0) || (i == j && i == 2) || (i == j && i == 4) || (i == j && i == 6))
+            if (i == j && i % 2 != 0)
             {
                 fatorial = 1;
                 for (k = matriz_A[i][j]; k > 0; k--)
