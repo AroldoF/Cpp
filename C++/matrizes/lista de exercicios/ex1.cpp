@@ -19,7 +19,7 @@ int main()
     cout << endl;
     for (i = 0; i < 5; i++)
     {
-        for (j = 0; j > 3; j++)
+        for (j = 0; j < 3; j++)
         {
             resultado[i][j]=mat01[i][j]+mat02[i][j];
             cout<<"O resultado";
