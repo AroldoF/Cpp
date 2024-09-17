@@ -6,6 +6,9 @@
 
 using namespace std;
 
+int tam_alunos=0;
+int tam_disciplinas=0; 
+
 int tamanho(string caminho_arquivo)
 {
     ifstream arquivo;
@@ -71,7 +74,7 @@ void salvar_matriz(string caminho_arquivo, string matriz[][3])
     }
 }
 
-void mostrar_matriz(string nomes[][3], string disciplinas[][3], int tam_alunos, int tam_disciplinas)
+void mostrar_matriz(string nomes[][3], string disciplinas[][3])
 {
     cout << left << setw(20) << "Alunos:" << left << setw(15) << "Materias:" << left << setw(15) << "Turma:\n"
          << endl;
@@ -351,7 +354,7 @@ void exibirNotas(int tam_alunos, int tam_disciplinas, string nomes[][3], string 
     }
 }
 
-void lançar_notas(string nomes[][3], int tam_alunos, string disciplinas[][3], int tam_disciplinas)
+void lançar_notas(string nomes[][3], string disciplinas[][3],vector<vector<string>>)
 {
     string modificação = "";
     bool quebra = false;
@@ -373,8 +376,8 @@ void lançar_notas(string nomes[][3], int tam_alunos, string disciplinas[][3], i
 int main()
 {
 
-    int tam_alunos = tamanho("../alunos.txt");
-    int tam_disciplinas = tamanho("../disciplinas.txt");
+    tam_alunos = tamanho("../alunos.txt");
+    tam_disciplinas = tamanho("../disciplinas.txt");
     // int tam_notas = tamanho("../notas.txt");
 
     string nomes[tam_alunos][3];
@@ -396,7 +399,7 @@ int main()
         switch (escolha)
         {
         case 1:
-            mostrar_matriz(nomes, disciplinas, tam_alunos, tam_disciplinas);
+            mostrar_matriz(nomes, disciplinas);
             break;
         case 2:
             adicionar_alunos(tam_alunos, nomes);
@@ -415,6 +418,9 @@ int main()
             break;
         case 6:
             exibirNotas(tam_alunos, tam_disciplinas, nomes, disciplinas);
+            break;
+        case 7:
+            lançar_notas(nomes, disciplinas,notas);
             break;
         default:
             cout << "error" << endl;
