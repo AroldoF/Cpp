@@ -5,3 +5,4 @@ Paula; 1234; C
 Ze; 9999; A
 Jao; 1191; A
 Caio; 4432; A
+Fer; 4442; A

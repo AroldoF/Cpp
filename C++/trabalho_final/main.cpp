@@ -28,7 +28,7 @@ int tamanho(string caminho_arquivo)
 }
 
 void salvar_matriz(string caminho_arquivo, string matriz[][3])
-{
+{      
     int m = 0, n = 0;
     ifstream arquivo;
     arquivo.open(caminho_arquivo);
@@ -69,6 +69,7 @@ void salvar_matriz(string caminho_arquivo, string matriz[][3])
     {
         cout << "Não foi possível abrir o arquivo." << endl;
     }
+    
 }
 
 void mostrar_matriz(string nomes[][3], string disciplinas[][3], int tam_alunos, int tam_disciplinas, vector<vector<string>> &notas)
@@ -198,7 +199,7 @@ void adicionar_alunos(int tam, string nomes[][3], int tam_disciplinas, string di
     aluno += matricula;
     aluno += "; ";
     aluno += turma;
-
+    
     fstream arquivo;
     arquivo.open("../alunos.txt", ios::out | ios::app);
     if (arquivo.is_open())
@@ -313,41 +314,42 @@ void cadastrar_disciplinas(int tam, string disciplinas[][3])
 
     fstream meuarquivo;
     string linha;
-    vector<string> line(tam + 1);
+    vector<string> line;
     int x = 0;
     meuarquivo.open("../notas.txt", ios::in);
     if (meuarquivo.is_open())
     {
         while (getline(meuarquivo, linha))
         {
-            line[x] = linha;
+            line.push_back(linha);
             line[x] += ";";
             line[x] += disciplina[0];
             line[x] += ";0-0-0-0";
-            cout << line[x] << endl;
             x++;
         }
-        meuarquivo.close();
-    }
-    else
-    {
-        cout << "Não foi possível abrir o arquivo." << endl;
-    }
-
-    meuarquivo.open("../notas.txt", ios::out | ios::trunc);
-    if (meuarquivo.is_open())
-    {
-        for (int i = 0; i < line.size(); i++)
-        {
-            meuarquivo << line[i] << endl;
-        }
-        meuarquivo.close();
+        
     }
     else
     {
         cout << "Não foi possível abrir o arquivo." << endl;
     }
     meuarquivo.close();
+
+    fstream meuarquivo2;
+    meuarquivo2.open("../notas.txt", ios::out|ios::trunc);
+    if (meuarquivo2.is_open())
+    {
+        for (int i = 0; i < line.size(); i++)
+        {
+            meuarquivo2 << line[i] << "\n";
+        }
+        meuarquivo2.close();
+    }
+    else
+    {
+        cout << "Não foi possível abrir o arquivo." << endl;
+    }
+    meuarquivo2.close();
 
     cout << "A disciplina " << nome << " adicionado com sucesso!" << endl;
 }
@@ -362,8 +364,6 @@ void exibirNotas(int tam_alunos, int tam_disciplinas, string nomes[][3], string 
     if (arquivo.is_open())
     {
         string linha;
-
-        // Certifique-se de que os limites são respeitados ao preencher
         for (int i = 1; i <= tam_alunos; i++)
         {
             notas[i][0] = nomes[i - 1][0]; // Ajustando para garantir que o índice de nomes começa no 0
@@ -760,7 +760,7 @@ int main()
             break;
         case 2:
             adicionar_alunos(tam_alunos, nomes, tam_disciplinas, disciplinas);
-            tam_alunos++;
+            //tam_alunos++;
             salvar_matriz("../alunos.txt", nomes);
             exibirNotas(tam_alunos, tam_disciplinas, nomes, disciplinas, notas);
             cout << "Voce quer adicionar notas? [S/N]" << endl;
@@ -768,6 +768,7 @@ int main()
             escolha_string[0] = toupper(escolha_string[0]);
             if (escolha_string[0] == 'S')
             {
+                exibirNotas(tam_alunos, tam_disciplinas, nomes, disciplinas, notas);
                 lançar_notas(nomes, tam_alunos, disciplinas, tam_disciplinas, notas);
             }
             break;
